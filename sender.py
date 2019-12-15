@@ -21,18 +21,18 @@ msg['Subject'] = title
 msg['From'] = Config.login
 msg['To'] = Config.login
 
-message = '<html><body>'
+message = '<html><body><p>This is your daily portion of memes. Enjoy.<p>'
 for url in images_urls:
     message += '''\
-        <p>This is an HTML body.<br>
-            It also has an image.
-            </p>
-            <img src="{}">
+            <p>{0}</p>
+            <img src="{0}">
     '''.format(url)
 message += '</body></html>'
 
 mail_body = MIMEText(message, 'html')
+msg.attach(mail_body)
+msg_to_str = msg.as_string()
 
 with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
     server.login(Config.login, Config.password)
-    server.sendmail(Config.login, Config.login, message)
+    server.sendmail(Config.login, Config.login, msg_to_str)

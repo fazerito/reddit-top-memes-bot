@@ -117,6 +117,7 @@ dmypy.json
 [Ll]ocal
 [Ss]cripts
 pyvenv.cfg
+config.py
 .env
 .venv
 env/
